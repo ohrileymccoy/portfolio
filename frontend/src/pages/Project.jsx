@@ -1,14 +1,13 @@
-import Layout from "../components/Layout";
-import { useParams } from "react-router-dom";
-
-export default function Project() {
-  const { slug } = useParams();
+export default function ProjectCard({ title }) {
   return (
-    <Layout>
-      <div className="p-6">
-        <h1 className="text-2xl font-bold">Project: {slug}</h1>
-        <p className="text-gray-600">This is where we’ll show details later.</p>
+    <div className="w-56 h-72 bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition">
+      <div className="h-40 bg-gray-300 flex items-center justify-center">
+        <span className="text-gray-600">Preview</span>
       </div>
-    </Layout>
+      <div className="p-4">
+        <h3 className="font-semibold text-lg">{title}</h3>
+        <p className="text-gray-500 text-sm">Short project description</p>
+      </div>
+    </div>
   );
 }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar({ onMenuClick }) {
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true); // default = dark
 
   // Handle scroll
   useEffect(() => {
@@ -12,12 +12,24 @@ export default function NavBar({ onMenuClick }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Load saved theme or system preference
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved) {
+      setDarkMode(saved === "dark");
+    } else {
+      setDarkMode(true); // default dark
+    }
+  }, []);
+
   // Sync dark mode with <html> tag
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
 
@@ -28,15 +40,30 @@ export default function NavBar({ onMenuClick }) {
         backdrop-blur text-white px-6 flex justify-between items-center`}
     >
       {/* Title → Home */}
-      <Link to="/" className="text-xl font-bold tracking-wide hover:text-gray-300">
-        My Portfolio
+      <Link
+        to="/"
+        className="text-xl font-bold tracking-wide hover:text-gray-300"
+      >
+        WVWeb3.dev
       </Link>
 
       {/* Desktop links */}
       <ul className="hidden md:flex gap-6 text-sm">
-        <li><Link to="/" className="hover:text-gray-300">Home</Link></li>
-        <li><Link to="/project/demo" className="hover:text-gray-300">Projects</Link></li>
-        <li><a href="#about" className="hover:text-gray-300">About</a></li>
+        <li>
+          <Link to="/" className="hover:text-gray-300">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/project/demo" className="hover:text-gray-300">
+            Projects
+          </Link>
+        </li>
+        <li>
+          <a href="#about" className="hover:text-gray-300">
+            About
+          </a>
+        </li>
       </ul>
 
       {/* Right side buttons */}
@@ -47,7 +74,7 @@ export default function NavBar({ onMenuClick }) {
           className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white transition"
           aria-label="Toggle Theme"
         >
-          {darkMode ? "🌙" : "☀️"}
+          {darkMode ? "☀️" : "🌙"}
         </button>
 
         {/* Hamburger */}

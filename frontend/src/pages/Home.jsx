@@ -6,6 +6,8 @@ import AboutCard from "../components/AboutCard";
 import ProjectsGrid from "../components/ProjectsGrid";
 import { fetchProjects } from "../services/api";
 import SkeletonCard from "../components/SkeletonCard";
+import TechBanner from "../components/TechBanner";
+
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
@@ -73,17 +75,27 @@ export default function Home() {
           </p>
         </AboutCard>
       </div>
+{/* Tech icons banner */}
+<TechBanner />
+      
 
-      {/* All Projects */}
-      {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <SkeletonCard key={i} />
-          ))}
-        </div>
-      ) : (
-        <ProjectsGrid projects={projects} />
-      )}
+{/* All Projects */}
+<h2 className="mt-10 text-xl font-bold text-gray-800 dark:text-gray-200">
+  All Projects
+</h2>
+
+{loading ? (
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+    {Array.from({ length: 6 }).map((_, i) => (
+      <SkeletonCard key={i} />
+    ))}
+  </div>
+) : (
+  <ProjectsGrid projects={projects} />
+)}
+
+
+ 
     </Layout>
   );
 }

@@ -2,9 +2,8 @@ import ProjectCard from "./ProjectCard";
 
 export default function ProjectsGrid({ projects = [] }) {
   return (
-    <section className="mt-12">
-      <h2 className="text-xl font-semibold mb-4">All Projects</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <section className="mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((p) => (
           <ProjectCard
             key={p.slug}

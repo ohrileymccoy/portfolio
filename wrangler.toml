@@ -1,7 +1,13 @@
 name = "portfolio-backend"
 compatibility_date = "2024-09-01"
 
+main = "backend/functions/index.ts"   # <-- add this
+
 [[d1_databases]]
 binding = "DB"
 database_name = "portfolio-db"
 database_id = "auto-generated-id"
+migrations_dir = "backend/migrations"
+
+[observability]
+enabled = true

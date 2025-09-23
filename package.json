@@ -5,5 +5,12 @@
     "dev": "npm --prefix frontend run dev",
     "build": "npm --prefix frontend run build",
     "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.12",
+    "react-swipeable": "^7.0.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250923.0"
   }
 }

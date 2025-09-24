@@ -4,25 +4,25 @@ export default function PreviewCard({ project, onClose }) {
   if (!project) return null;
 
   return (
+
     <div
- className={[
-  // 📱 default mobile = ultra tiny
-  "w-[40vw] max-h-[25vh]",
+  className={[
+    // mobile: almost full width, scrollable if tall
+    "w-[90vw] max-w-sm max-h-[75vh] overflow-y-auto",
 
-  // small tablets (≥640px)
-  "sm:w-[65vw] sm:max-h-[45vh]",
+    // tablets
+    "sm:w-[80vw] sm:max-w-md sm:max-h-[70vh]",
 
-  // desktops (≥768px)
-  "md:w-[min(900px,90vw)] md:max-h-[80vh]",
+    // desktops
+    "md:w-[min(900px,90vw)] md:max-h-[80vh]",
 
-  "rounded-2xl",
-  "dark:bg-black/70 bg-white/95",
-  "border border-white/10 shadow-2xl backdrop-blur-md",
-  "p-1 sm:p-3 md:p-6 space-y-1 sm:space-y-3 md:space-y-6",
-].join(" ")}
-
-      onClick={(e) => e.stopPropagation()} // prevent backdrop close
-    >
+    "rounded-2xl",
+    "dark:bg-black/70 bg-white/95",
+    "border border-white/10 shadow-2xl backdrop-blur-md",
+    "p-1 sm:p-3 md:p-6 space-y-1 sm:space-y-3 md:space-y-6",
+  ].join(" ")}
+  onClick={(e) => e.stopPropagation()}
+>
       {/* header */}
       <div className="flex items-start justify-between gap-4">
         <Link to={`/project/${project.slug}`} className="group">
@@ -44,14 +44,23 @@ export default function PreviewCard({ project, onClose }) {
         {project.long_description || project.description}
       </p>
 
-      {/* preview image (optional) */}
-      {project.image && (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full max-h-[100px] sm:max-h-[180px] md:max-h-[320px] object-cover rounded-lg"
-        />
-      )}
+      {/* preview media */}
+{project.video ? (
+  <video
+    src={project.video}
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="w-full max-h-[100px] sm:max-h-[180px] md:max-h-[320px] object-cover rounded-lg"
+  />
+) : project.image ? (
+  <img
+    src={project.image}
+    alt={project.title}
+    className="w-full max-h-[100px] sm:max-h-[180px] md:max-h-[320px] object-cover rounded-lg"
+  />
+) : null}
 
       {/* code snippet (optional) */}
       {project.code_snippet && (

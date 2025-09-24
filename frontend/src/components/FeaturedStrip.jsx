@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import previewProjects from "./Preview";
 import PreviewCard from "./PreviewCard";
@@ -34,31 +33,21 @@ export default function FeaturedStrip({ projects = [] }) {
 
   return (
     <section className="relative py-12 overflow-hidden">
-      {/* background grid */}
-      <div className="absolute inset-0 -z-10 bg-black dark:bg-black bg-gray-900">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern
-              id="grid"
-              width="60"
-              height="60"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 60 0 L 0 0 0 60"
-                fill="none"
-                stroke="rgba(255,255,255,0.05)"
-                strokeWidth="1"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
+  
 
+
+
+  {/* WV logo (floats on right, below cards) */}
+  <div className="absolute inset-y-0 right-0 z-20 flex items-center justify-end">
+    <img
+      src="/assets/wv1.png"
+      alt="WV background"
+      className="max-w-[700px] opacity-40 pointer-events-none mix-blend-lighten"
+    />
+  </div>
       {/* stacked cards */}
       <div
-        className="relative flex items-center justify-center 
+        className="relative z-30 flex items-center justify-center 
                    aspect-[16/9] sm:aspect-[21/9] 
                    max-w-full sm:max-w-7xl mx-auto px-2"
       >

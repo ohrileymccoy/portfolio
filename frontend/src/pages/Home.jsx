@@ -37,9 +37,10 @@ export default function Home() {
     files: Math.max(80, projects.length * 40),
   };
 
-  return (
-    <Layout>
-      {/* Featured Projects Strip – no banner */}
+ return (
+  <Layout>
+    {/* Featured Projects Strip */}
+    <section id="featured">
       {loading ? (
         <div className="flex gap-4 overflow-x-auto pb-4">
           {Array.from({ length: 4 }).map((_, i) => (
@@ -59,43 +60,45 @@ export default function Home() {
       ) : (
         <FeaturedStrip projects={featured} />
       )}
+    </section>
 
-      {/* Dashboard + About */}
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <GitHubDashboard stats={stats} />
+    {/* Dashboard + About */}
+    <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <GitHubDashboard stats={stats} />
+      <section id="about">
         <AboutCard>
           <p>Full-stack builder focused on Cloudflare, React, and shippable MVPs.</p>
           <p>
-            Journalism tools, data visualizations, delivery tracking, and AI-assisted workflows
-            — projects that actually help small businesses and local communities.
+            Journalism tools, data visualizations, delivery tracking, and AI-assisted workflows —
+            projects that actually help small businesses and local communities.
           </p>
           <p>
             I love clean DX, resilient UIs, and making complex things easy to use. This portfolio
             embeds live apps so you can try everything without leaving.
           </p>
         </AboutCard>
-      </div>
-{/* Tech icons banner */}
-<TechBanner />
-      
+      </section>
+    </div>
 
-{/* All Projects */}
-<h2 className="mt-10 text-xl font-bold text-gray-800 dark:text-gray-200">
-  All Projects
-</h2>
+    {/* Tech icons banner */}
+    <TechBanner />
 
-{loading ? (
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-    {Array.from({ length: 6 }).map((_, i) => (
-      <SkeletonCard key={i} />
-    ))}
-  </div>
-) : (
-  <ProjectsGrid projects={projects} />
-)}
+    {/* All Projects */}
+    <section id="projects" className="mt-10">
+      <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+        All Projects
+      </h2>
 
-
- 
-    </Layout>
-  );
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
+      ) : (
+        <ProjectsGrid projects={projects} />
+      )}
+    </section>
+  </Layout>
+);
 }

@@ -41,7 +41,8 @@ export default function TechBanner() {
           {loop.map((item, i) => (
             <div
               key={i}
-              className="flex flex-col items-center text-gray-300 min-w-[90px]"
+              className="flex flex-col items-center min-w-[90px] text-black dark:text-white"
+
             >
               <div className="text-3xl">{item.icon}</div>
               <span className="text-[10px] mt-1 opacity-80">{item.label}</span>

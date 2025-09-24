@@ -1,7 +1,38 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function SideBar({ isOpen, onClose }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [pendingScroll, setPendingScroll] = useState(null);
+
+  // Helper to scroll to element
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // Run pending scroll after navigation back to home
+  useEffect(() => {
+    if (location.pathname === "/" && pendingScroll) {
+      setTimeout(() => scrollToId(pendingScroll), 50);
+      setPendingScroll(null);
+    }
+  }, [location, pendingScroll]);
+
+  // Handle clicks
+  const handleClick = (id, e) => {
+    e.preventDefault();
+    onClose(); // always close sidebar first
+    if (location.pathname === "/") {
+      scrollToId(id);
+    } else {
+      setPendingScroll(id);
+      navigate("/");
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -31,13 +62,19 @@ export default function SideBar({ isOpen, onClose }) {
             </button>
             <ul className="space-y-4">
               <li>
-                <Link to="/" onClick={onClose}>Home</Link>
+                <a href="/" onClick={(e) => handleClick("featured", e)}>
+                  Home
+                </a>
               </li>
               <li>
-                <Link to="/project/demo" onClick={onClose}>Projects</Link>
+                <a href="/" onClick={(e) => handleClick("projects", e)}>
+                  Projects
+                </a>
               </li>
               <li>
-                <a href="#about" onClick={onClose}>About</a>
+                <a href="#about" onClick={onClose}>
+                  About
+                </a>
               </li>
             </ul>
           </motion.aside>

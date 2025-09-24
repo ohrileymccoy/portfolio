@@ -4,27 +4,27 @@
 const previewProjects = [
   {
     slug: "board-game",
-    title: "Board Game",
+    title: "Scoggle",
     description: "Simple real-time multiplayer board game built with React.",
     image: "/assets/boardgame.jpg",
-    github_url: "https://github.com/you/board-game",
-    demo_url: "https://board-game.pages.dev",   // 👈 iframe-ready
+    github_url: "https://github.com/ohrileymccoy/wordgame",
+    demo_url: "https://wordgame-e6x.pages.dev/",   // 👈 iframe-ready
   },
   {
     slug: "weather-dashboard",
-    title: "Weather Dashboard",
+    title: "Local Weather Dashboard",
     description: "Live weather visualization with graphs and city switching.",
     image: "/assets/weather.jpg",
-    github_url: "https://github.com/you/weather-dashboard",
-    demo_url: "https://weather-dashboard.pages.dev", // 👈 iframe-ready
+    github_url: "https://github.com/ohrileymccoy/weather-dashboard",
+    demo_url: "https://weather-dashboard-80a.pages.dev/", // 👈 iframe-ready
   },
   {
     slug: "sleazy-news",
     title: "S L N",
     description: "Local news app featuring user submitted content.",
     image: "/assets/sleazy.jpg",
-    github_url: "https://github.com/you/sln",
-    demo_url: "https://sleazy-news.pages.dev", // 👈 iframe-ready
+    github_url: "https://github.com/ohrileymccoy/SLZNWS",
+    demo_url: "https://sleazynews.net", // 👈 iframe-ready
   }
 ];
 

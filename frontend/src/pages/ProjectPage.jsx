@@ -49,17 +49,25 @@ export default function ProjectPage() {
               {project.long_description || project.description}
             </p>
 
-            {/* Demo iframe if provided */}
-            {project.demo_url && (
-              <div className="mb-6">
-                <iframe
-                  src={project.demo_url}
-                  title={project.title}
-                  className="w-full aspect-video border rounded-lg shadow"
-                />
-              </div>
-            )}
+          <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-900/90 backdrop-blur-md">
+  {/* fake dashboard top bar */}
+  <div className="flex items-center gap-2 px-3 py-2 bg-gray-800/80 border-b border-gray-700">
+    <span className="w-3 h-3 rounded-full bg-red-500"></span>
+    <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+    <span className="w-3 h-3 rounded-full bg-green-500"></span>
+    <h3 className="ml-3 text-sm font-medium text-gray-300">{project.title} Demo</h3>
+  </div>
 
+  {/* responsive iframe */}
+  <div className="relative w-full aspect-video">
+    <iframe
+      src={project.demo_url}
+      title={project.title}
+      className="absolute inset-0 w-full h-full border-0 rounded-b-xl"
+      allow="fullscreen"
+    />
+  </div>
+</div>
             {/* Code snippet */}
             {project.code_snippet && (
               <div className="mb-6">

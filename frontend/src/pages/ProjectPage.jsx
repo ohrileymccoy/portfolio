@@ -33,41 +33,50 @@ export default function ProjectPage() {
 
   return (
     <Layout>
-      <div className="p-6 max-w-5xl mx-auto">
+      <div className="px-3 sm:px-6 max-w-full sm:max-w-5xl mx-auto">
         {loading && <div className="text-gray-500">Loading…</div>}
         {error && <div className="text-red-500">{error}</div>}
         {!loading && !error && project && (
           <>
+            {/* Header */}
             <div className="flex items-start justify-between mb-4">
               <h1 className="text-3xl font-bold">{project.title}</h1>
-              <Link to="/" className="text-sm text-gray-500 dark:text-gray-400 hover:underline">
+              <Link
+                to="/"
+                className="text-sm text-gray-500 dark:text-gray-400 hover:underline"
+              >
                 ← Back
               </Link>
             </div>
 
+            {/* Description */}
             <p className="text-gray-800 dark:text-gray-300 mb-6">
               {project.long_description || project.description}
             </p>
 
-          <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-900/90 backdrop-blur-md">
-  {/* fake dashboard top bar */}
-  <div className="flex items-center gap-2 px-3 py-2 bg-gray-800/80 border-b border-gray-700">
-    <span className="w-3 h-3 rounded-full bg-red-500"></span>
-    <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
-    <span className="w-3 h-3 rounded-full bg-green-500"></span>
-    <h3 className="ml-3 text-sm font-medium text-gray-300">{project.title} Demo</h3>
-  </div>
+            {/* Dashboard-style iframe */}
+            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-900/90 backdrop-blur-md w-full h-auto sm:h-[70vh] mb-6">
+              {/* fake dashboard top bar */}
+              <div className="flex items-center gap-2 px-3 py-2 bg-gray-800/80 border-b border-gray-700">
+                <span className="w-3 h-3 rounded-full bg-red-500"></span>
+                <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span className="w-3 h-3 rounded-full bg-green-500"></span>
+                <h3 className="ml-3 text-sm font-medium text-gray-300">
+                  {project.title} Demo
+                </h3>
+              </div>
 
-  {/* responsive iframe */}
-  <div className="relative w-full aspect-video">
-    <iframe
-      src={project.demo_url}
-      title={project.title}
-      className="absolute inset-0 w-full h-full border-0 rounded-b-xl"
-      allow="fullscreen"
-    />
-  </div>
-</div>
+              {/* responsive iframe */}
+              <div className="relative w-full aspect-[4/3] sm:aspect-video">
+                <iframe
+                  src={project.demo_url}
+                  title={project.title}
+                  className="absolute inset-0 w-full h-full border-0 rounded-b-xl"
+                  allow="fullscreen"
+                />
+              </div>
+            </div>
+
             {/* Code snippet */}
             {project.code_snippet && (
               <div className="mb-6">

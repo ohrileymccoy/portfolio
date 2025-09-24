@@ -37,14 +37,14 @@ export default function FeaturedStrip({ projects = [] }) {
 
 
 
-  {/* WV logo (floats on right, below cards) */}
-  <div className="absolute inset-y-0 right-0 z-20 flex items-center justify-end">
-    <img
-      src="/assets/wv1.png"
-      alt="WV background"
-      className="max-w-[700px] opacity-40 pointer-events-none mix-blend-lighten"
-    />
-  </div>
+<div className="absolute inset-y-0 right-0 z-20 flex items-center justify-end">
+  <img
+    src="/assets/wv3.png"
+    alt="WV background"
+    className="w-[90vw] max-w-[900px] opacity-40 pointer-events-none mix-blend-lighten translate-x-40 -translate-y-16"
+  />
+</div>
+
       {/* stacked cards */}
       <div
         className="relative z-30 flex items-center justify-center 

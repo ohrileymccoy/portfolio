@@ -32,7 +32,8 @@ export default function GitHubDashboard() {
   const [weeks, setWeeks] = useState([]);
 
   useEffect(() => {
-    fetch("/api/v1/github")
+   fetch(`${window.location.origin}/api/v1/github`)
+
       .then((r) => r.json())
       .then((data) => {
         if (!data?.data?.viewer) return;
